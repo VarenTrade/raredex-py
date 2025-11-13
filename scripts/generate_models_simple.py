@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """
-Simple script to fetch Paradex API OpenAPI spec and generate Pydantic models.
+Simple script to fetch Raredex API OpenAPI spec and generate Pydantic models.
 
 This script:
-1. Fetches the Swagger 2.0 spec from Paradex API OR uses a provided JSON file
+1. Fetches the Swagger 2.0 spec from Raredex API OR uses a provided JSON file
 2. Uses swagger2openapi to convert it to OpenAPI 3.0 format
 3. Generates Pydantic models using datamodel-code-generator
 """
@@ -20,7 +20,7 @@ import httpx
 
 def main():
     """Main function to orchestrate the model generation."""
-    parser = argparse.ArgumentParser(description="Generate Pydantic models from Paradex API spec")
+    parser = argparse.ArgumentParser(description="Generate Pydantic models from Raredex API spec")
     parser.add_argument(
         "--spec-file",
         type=str,
