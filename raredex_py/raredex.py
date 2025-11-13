@@ -1,15 +1,15 @@
 import logging
 from typing import TYPE_CHECKING
 
-from paradex_py.account.account import ParadexAccount
-from paradex_py.api.api_client import ParadexApiClient
-from paradex_py.api.ws_client import ParadexWebsocketClient
-from paradex_py.environment import Environment
-from paradex_py.utils import raise_value_error
+from raredex_py.account.account import RaredexAccount
+from raredex_py.api.api_client import RaredexApiClient
+from raredex_py.api.ws_client import RaredexWebsocketClient
+from raredex_py.environment import Environment
+from raredex_py.utils import raise_value_error
 
 if TYPE_CHECKING:
-    from paradex_py.api.http_client import HttpClient
-    from paradex_py.api.protocols import (
+    from raredex_py.api.http_client import HttpClient
+    from raredex_py.api.protocols import (
         AuthProvider,
         RequestHook,
         RetryStrategy,
@@ -18,8 +18,8 @@ if TYPE_CHECKING:
     )
 
 
-class Paradex:
-    """Paradex class to interact with Paradex REST API.
+class Raredex:
+    """Raredex class to interact with Raredex REST API.
 
     Args:
         env (Environment): Environment
