@@ -5,8 +5,8 @@ from typing import Any, cast
 
 import httpx
 
-from paradex_py.account.account import ParadexAccount
-from paradex_py.api.block_trades_api import BlockTradesMixin
+from raredex_py.account.account import ParadexAccount
+from raredex_py.api.block_trades_api import BlockTradesMixin
 from paradex_py.api.http_client import HttpClient, HttpMethod
 from paradex_py.api.models import AccountSummary, AccountSummarySchema, AuthSchema, SystemConfig, SystemConfigSchema
 from paradex_py.api.protocols import AuthProvider, Signer
