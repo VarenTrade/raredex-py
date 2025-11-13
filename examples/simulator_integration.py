@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Paradex Simulator Integration Example
+Raredex Simulator Integration Example
 
 Comprehensive example demonstrating all simulator-friendly features:
 1. REST API injection with httpx MockTransport
@@ -19,15 +19,15 @@ from types import SimpleNamespace
 
 import httpx
 
-from paradex_py import Paradex
-from paradex_py.api.api_client import ParadexApiClient
-from paradex_py.api.http_client import HttpClient
-from paradex_py.api.ws_client import ParadexWebsocketClient
-from paradex_py.environment import Environment
+from raredex_py import Raredex
+from raredex_py.api.api_client import RaredexApiClient
+from raredex_py.api.http_client import HttpClient
+from raredex_py.api.ws_client import ParadexWebsocketClient
+from raredex_py.environment import Environment
 
 # Optional: WebSocket RPC models for typed message creation
 try:
-    from paradex_py.api.ws_models import (
+    from raredex_py.api.ws_models import (
         JSONRPCRequest,
         create_data_message,
         create_subscription_request,
