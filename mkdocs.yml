@@ -1,10 +1,10 @@
-site_name: "Paradex Python SDK" # via logo
-repo_url: https://github.com/tradeparadex/paradex-py
-site_url: https://tradeparadex.github.io/paradex-py
-site_description: Paradex Python SDK
-site_author: Paradex
+site_name: "Raredex Python SDK" # via logo
+repo_url: https://github.com/traderaredex/paradex-py
+site_url: https://traderaredex.github.io/paradex-py
+site_description: Raredex Python SDK
+site_author: Raredex
 edit_uri: edit/main/docs/
-repo_name: tradeparadex/paradex-py
+repo_name: traderaredex/paradex-py
 
 plugins:
   - search
@@ -20,7 +20,7 @@ plugins:
 theme:
   name: material
   nav_style: dark
-  logo: assets/paradex-light.svg
+  logo: assets/raredex-light.svg
   font:
     text: Roboto
     code: Roboto Mono
