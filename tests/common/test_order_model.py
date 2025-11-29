@@ -1,6 +1,6 @@
-from decimal import Decimal
+    from decimal import Decimal
 
-from paradex_py.common.order import Order, OrderSide, OrderType
+from varen_py.common.order import Order, OrderSide, OrderType
 
 
 def test_order_type_values():
