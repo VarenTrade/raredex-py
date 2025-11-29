@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """
-Simple script to fetch Raredex API OpenAPI spec and generate Pydantic models.
+Simple script to fetch Varen API OpenAPI spec and generate Pydantic models.
 
 This script:
-1. Fetches the Swagger 2.0 spec from Raredex API OR uses a provided JSON file
+1. Fetches the Swagger 2.0 spec from Varen API OR uses a provided JSON file
 2. Uses swagger2openapi to convert it to OpenAPI 3.0 format
 3. Generates Pydantic models using datamodel-code-generator
 """
@@ -20,7 +20,7 @@ import httpx
 
 def main():
     """Main function to orchestrate the model generation."""
-    parser = argparse.ArgumentParser(description="Generate Pydantic models from Raredex API spec")
+    parser = argparse.ArgumentParser(description="Generate Pydantic models from Varen API spec")
     parser.add_argument(
         "--spec-file",
         type=str,
@@ -29,13 +29,13 @@ def main():
     parser.add_argument(
         "--output-dir",
         type=str,
-        default="paradex_py/api/generated",
-        help="Output directory for generated models (default: paradex_py/api/generated)",
+        default="Varen_py/api/generated",
+        help="Output directory for generated models (default: Varen_py/api/generated)",
     )
 
     args = parser.parse_args()
 
-    api_url = "https://api.prod.paradex.trade/swagger/doc.json"
+    api_url = "https://api.prod.Varen.trade/swagger/doc.json"
     output_dir = Path(args.output_dir)
 
     if args.spec_file:
@@ -49,7 +49,7 @@ def main():
             swagger_spec = json.load(f)
         api_version = swagger_spec.get("info", {}).get("version", "unknown")
     else:
-        print("📡 Fetching OpenAPI spec from Paradex API...")
+        print("📡 Fetching OpenAPI spec from Varen API...")
         # Fetch the spec
         with httpx.Client() as client:
             response = client.get(api_url)
@@ -112,7 +112,7 @@ def main():
             "--disable-timestamp",
             "--use-subclass-enum",
             "--custom-file-header",
-            f"# Generated from Paradex API spec version {api_version}",
+            f"# Generated from Varen API spec version {api_version}",
         ]
 
         print(f"Running: {' '.join(gen_cmd)}")
@@ -130,8 +130,8 @@ def main():
 
         if "from .model import *" not in init_content:
             init_file.write_text(
-                f"# Generated from Paradex API spec version {api_version}\n\n"
-                f'"""Generated API models from Paradex OpenAPI spec v{api_version}."""\n\n'
+                f"# Generated from Varen API spec version {api_version}\n\n"
+                f'"""Generated API models from Varen OpenAPI spec v{api_version}."""\n\n'
                 "# ruff: noqa: F403, A003\n"
                 "# Import all generated models\n"
                 "from .requests import *\n"
