@@ -12,13 +12,13 @@ import websockets
 from pydantic import BaseModel
 from websockets import ClientConnection, State
 
-from paradex_py.account.account import ParadexAccount
-from paradex_py.constants import WS_TIMEOUT
-from paradex_py.environment import Environment
+from Varen_py.account.account import VarenAccount
+from varen_py.constants import WS_TIMEOUT
+from varen_py.environment import Environment
 
 # Optional typed message models
 try:
-    from paradex_py.api.ws_models import validate_ws_message
+    from varen_py.api.ws_models import validate_ws_message
 
     TYPED_MODELS_AVAILABLE = True
 except ImportError:
@@ -57,8 +57,8 @@ class WebSocketConnector(Protocol):
         ...
 
 
-class ParadexWebsocketChannel(Enum):
-    """Enum class to define the channels for Paradex Websocket API.
+class VarenWebsocketChannel(Enum):
+    """Enum class to define the channels for Varen Websocket API.
 
     Attributes:
         ACCOUNT (str): Private websocket channel for receiving updates of account status
@@ -95,20 +95,20 @@ class ParadexWebsocketChannel(Enum):
     TRANSFERS = "transfers"
 
 
-def _paradex_channel_prefix(value: str) -> str:
+def _varen_channel_prefix(value: str) -> str:
     return value.split(".")[0]
 
 
-def _get_ws_channel_from_name(message_channel: str) -> ParadexWebsocketChannel | None:
-    for channel in ParadexWebsocketChannel:
-        if message_channel.startswith(_paradex_channel_prefix(channel.value)):
+def _get_ws_channel_from_name(message_channel: str) -> VarenWebsocketChannel | None:
+    for channel in VarenWebsocketChannel:
+        if message_channel.startswith(_varen_channel_prefix(channel.value)):
             return channel
     return None
 
 
-class ParadexWebsocketClient:
-    """Class to interact with Paradex WebSocket JSON-RPC API.
-        Initialized along with `Paradex` class.
+class VarenWebsocketClient:
+    """Class to interact with Varen WebSocket JSON-RPC API.
+        Initialized along with `Varen` class.
 
     Args:
         env (Environment): Environment
@@ -124,23 +124,23 @@ class ParadexWebsocketClient:
         disable_reconnect (bool, optional): Disable automatic reconnection for tight simulation control. Defaults to False.
 
     Examples:
-        >>> from paradex_py import Paradex
-        >>> from paradex_py.environment import Environment
-        >>> paradex = Paradex(env=Environment.TESTNET)
-        >>> paradex.ws_client.connect()
+        >>> from varen_py import Varen
+        >>> from varen_py.environment import Environment
+        >>> Varen = Varen(env=Environment.TESTNET)
+        >>> Varen.ws_client.connect()
         >>> # With custom timeout
-        >>> from paradex_py.api.ws_client import ParadexWebsocketClient
-        >>> ws_client = ParadexWebsocketClient(env=Environment.TESTNET, ws_timeout=30)
+        >>> from varen_py.api.ws_client import VarenWebsocketClient
+        >>> ws_client = VarenWebsocketClient(env=Environment.TESTNET, ws_timeout=30)
         >>> # With manual pumping disabled
-        >>> ws_client = ParadexWebsocketClient(env=Environment.TESTNET, auto_start_reader=False)
+        >>> ws_client = VarenWebsocketClient(env=Environment.TESTNET, auto_start_reader=False)
         >>> # High-frequency simulator mode (no sleeps)
-        >>> ws_client = ParadexWebsocketClient(env=Environment.TESTNET,
+        >>> ws_client = VarenWebsocketClient(env=Environment.TESTNET,
         ...                                   reader_sleep_on_error=0, reader_sleep_on_no_connection=0)
         >>> # With typed message validation
-        >>> ws_client = ParadexWebsocketClient(env=Environment.TESTNET, validate_messages=True)
+        >>> ws_client = VarenWebsocketClient(env=Environment.TESTNET, validate_messages=True)
     """
 
-    classname: str = "ParadexWebsocketClient"
+    classname: str = "VarenWebsocketClient"
 
     def __init__(
         self,
@@ -157,10 +157,10 @@ class ParadexWebsocketClient:
         disable_reconnect: bool = False,
     ):
         self.env = env
-        self.api_url = ws_url_override or f"wss://ws.api.{self.env}.paradex.trade/v1"
+        self.api_url = ws_url_override or f"wss://ws.api.{self.env}.varen.trade/v1"
         self.logger = logger or logging.getLogger(__name__)
         self.ws: WebSocketConnection | ClientConnection | None = None
-        self.account: ParadexAccount | None = None
+        self.account: VarenAccount | None = None
         self.callbacks: dict[str, Callable] = {}
         self.subscribed_channels: dict[str, bool] = {}
         self.ws_timeout = ws_timeout if ws_timeout is not None else WS_TIMEOUT
