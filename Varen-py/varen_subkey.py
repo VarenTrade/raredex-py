@@ -1,16 +1,16 @@
 import logging
 
-from paradex_py.account.subkey_account import SubkeyAccount
-from paradex_py.api.api_client import ParadexApiClient
-from paradex_py.api.ws_client import ParadexWebsocketClient
-from paradex_py.environment import Environment
-from paradex_py.utils import raise_value_error
+from varen_py.account.subkey_account import SubkeyAccount
+from varen_py.api.api_client import VarenApiClient
+from varen_py.api.ws_client import VarenWebsocketClient
+from varen_py.environment import Environment
+from varen_py.utils import raise_value_error
 
 
-class ParadexSubkey:
-    """ParadexSubkey class for L2-only authentication using subkeys.
+class VarenSubkey:
+    """VarenSubkey class for L2-only authentication using subkeys.
 
-    This class extends Paradex functionality but uses SubkeyAccount for L2-only
+    This class extends Varen functionality but uses SubkeyAccount for L2-only
     authentication without requiring L1 credentials.
 
     Args:
@@ -21,15 +21,15 @@ class ParadexSubkey:
         ws_timeout (int, optional): WebSocket read timeout in seconds. Defaults to None (uses default).
 
     Examples:
-        >>> from paradex_py import ParadexSubkey
-        >>> from paradex_py.environment import Environment
-        >>> paradex = ParadexSubkey(
+        >>> from varen_py import VarenSubkey
+        >>> from varen_py.environment import Environment
+        >>> paradex = VarenSubkey(
         ...     env=Environment.TESTNET,
         ...     l2_private_key="0x...",
         ...     l2_address="0x..."
         ... )
         >>> # With custom timeout
-        >>> paradex = ParadexSubkey(
+        >>> varen = VarenSubkey(
         ...     env=Environment.TESTNET,
         ...     l2_private_key="0x...",
         ...     l2_address="0x...",
