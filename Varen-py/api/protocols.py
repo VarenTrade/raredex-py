@@ -1,5 +1,5 @@
 """
-Injection protocols and type contracts for paradex_py.
+Injection protocols and type contracts for varen_py.
 
 This module exports all the protocols that define injection points
 for custom implementations in simulation, testing, and production environments.
