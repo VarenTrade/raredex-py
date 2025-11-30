@@ -1,4 +1,4 @@
-# Generated from Paradex API spec version 1.101.8
+# Generated from Varen API spec version 1.101.8
 
 from __future__ import annotations
 
@@ -117,7 +117,7 @@ class ModifyOrderRequest(BaseModel):
     price: Annotated[str, Field(description="Existing or modified price of the order", examples=["29500.12"])]
     side: Annotated[str, Field(description="Existing side of the order", examples=["BUY"])]
     signature: Annotated[
-        str, Field(description='Order signature in as a string "[r,s]" signed by account\'s paradex private key')
+        str, Field(description='Order signature in as a string "[r,s]" signed by account\'s varen private key')
     ]
     signature_timestamp: Annotated[
         int, Field(description="Unix timestamp in milliseconds of order creation, used for signature verification")
@@ -192,7 +192,7 @@ class AlgoOrderRequest(BaseModel):
     ] = None
     side: Annotated[responses.OrderSide, Field(description="Algo order side", examples=["MARKET"])]
     signature: Annotated[
-        str, Field(description='Order signature in as a string "[r,s]" signed by account\'s paradex private key')
+        str, Field(description='Order signature in as a string "[r,s]" signed by account\'s varen private key')
     ]
     signature_timestamp: Annotated[
         int, Field(description="Unix timestamp in milliseconds of order creation, used for signature verification")
@@ -278,7 +278,7 @@ class OrderRequest(BaseModel):
     ] = None
     side: Annotated[responses.OrderSide, Field(description="Order side")]
     signature: Annotated[
-        str, Field(description='Order signature in as a string "[r,s]" signed by account\'s paradex private key')
+        str, Field(description='Order signature in as a string "[r,s]" signed by account\'s varen private key')
     ]
     signature_timestamp: Annotated[
         int, Field(description="Unix timestamp in milliseconds of order creation, used for signature verification")
