@@ -4,14 +4,14 @@ build-backend = "hatchling.build"
 
 # Add project metadata for PEP 621 needed for building
 [project]
-name = "raredex_py"
+name = "varen_py"
 version = "0.5.0rc2"
-description = "Raredex Python SDK"
+description = "Varen Python SDK"
 readme = "README.md"
 requires-python = ">=3.10,<3.13"
 license = { file = "LICENSE" }
 authors = [
-    { name = "Raredex", email = "finfo@raredex.trade" },
+    { name = "Varen", email = "finfo@varen.trade" },
 ]
 classifiers = [
     "Programming Language :: Python :: 3",
