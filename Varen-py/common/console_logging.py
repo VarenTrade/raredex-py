@@ -6,5 +6,5 @@ logging.basicConfig(
     format="%(asctime)s.%(msecs)03d | %(levelname)s | %(message)s",
     datefmt="%Y-%m-%d %H:%M:%S",
 )
-
+ 
 console_logger = logging.getLogger(__name__)
