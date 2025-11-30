@@ -1,6 +1,6 @@
-# Generated from Paradex API spec version 1.101.8
+# Generated from Varen API spec version 1.101.8
 
-"""Generated API models from Paradex OpenAPI spec v1.101.8."""
+"""Generated API models from Varen  OpenAPI spec v1.101.8."""
 
 # Import all generated models
 from .requests import *
