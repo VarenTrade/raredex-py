@@ -8,7 +8,7 @@ def build_onboarding_message(chain_id: int) -> TypedDataDict:
         "message": {
             "action": "Onboarding",
         },
-        "domain": {"name": "Paradex", "chainId": hex(chain_id), "version": "1"},
+        "domain": {"name": "Varen", "chainId": hex(chain_id), "version": "1"},
         "primaryType": "Constant",
         "types": {
             "StarkNetDomain": [
