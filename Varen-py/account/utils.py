@@ -16,7 +16,7 @@ from starknet_py.constants import EC_ORDER
 from starknet_py.utils.typed_data import TypedData, TypedDataDict
 from web3.auto import w3
 
-from paradex_py.utils import raise_value_error
+from raven_py.utils import raise_value_error
 
 SHA256_EC_MAX_DIGEST = 2**256
 
