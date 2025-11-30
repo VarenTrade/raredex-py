@@ -13,16 +13,16 @@ from starknet_py.net.full_node_client import FullNodeClient
 from starknet_py.net.http_client import HttpMethod
 from starknet_py.net.signer.stark_curve_signer import KeyPair
 
-from paradex_py.account.starknet import Account as StarknetAccount
-from paradex_py.account.utils import derive_stark_key, derive_stark_key_from_ledger, flatten_signature
-from paradex_py.api.models import SystemConfig
-from paradex_py.common.order import Order
-from paradex_py.message.auth import build_auth_message, build_fullnode_message
-from paradex_py.message.block_trades import BlockTrade, build_block_trade_message
-from paradex_py.message.onboarding import build_onboarding_message
-from paradex_py.message.order import build_modify_order_message, build_order_message
-from paradex_py.message.stark_key import build_stark_key_message
-from paradex_py.utils import raise_value_error
+from varen_py.account.starknet import Account as StarknetAccount
+from varen_py.account.utils import derive_stark_key, derive_stark_key_from_ledger, flatten_signature
+from varenx_py.api.models import SystemConfig
+from pvaren_py.common.order import Order
+from varen_py.message.auth import build_auth_message, build_fullnode_message
+from varen_py.message.block_trades import BlockTrade, build_block_trade_message
+from varen_py.message.onboarding import build_onboarding_message
+from varen_py.message.order import build_modify_order_message, build_order_message
+from varen_py.message.stark_key import build_stark_key_message
+from varen_py.utils import raise_value_error
 
 FULLNODE_SIGNATURE_VERSION = "1.0.0"
 
@@ -64,7 +64,7 @@ class ParadexAccount:
         self.config = config
 
         if l1_address is None:
-            return raise_value_error("Paradex: Provide Ethereum address")
+            return raise_value_error("varen: Provide Ethereum address")
         self.l1_address = l1_address
 
         if l1_private_key is not None:
@@ -77,7 +77,7 @@ class ParadexAccount:
         elif l2_private_key is not None:
             self.l2_private_key = int_from_hex(l2_private_key)
         else:
-            return raise_value_error("Paradex: Provide Ethereum or Paradex private key")
+            return raise_value_error("varen: Provide Ethereum or varen private key")
 
         key_pair = KeyPair.from_private_key(self.l2_private_key)
         self.l2_public_key = key_pair.public_key
@@ -97,13 +97,13 @@ class ParadexAccount:
         self._apply_fullnode_headers_patch(client)
 
     # Monkey patch of _make_request method of starknet.py client
-    # to inject http headers requested by Paradex full node:
-    # - PARADEX-STARKNET-ACCOUNT: account address signing the request
-    # - PARADEX-STARKNET-SIGNATURE: signature of the request
-    # - PARADEX-STARKNET-SIGNATURE-TIMESTAMP: timestamp of the signature
-    # - PARADEX-STARKNET-SIGNATURE-VERSION: version of the signature
+    # to inject http headers requested by Varen full node:
+    # - varen-STARKNET-ACCOUNT: account address signing the request
+    # - varen-STARKNET-SIGNATURE: signature of the request
+    # - varen-STARKNET-SIGNATURE-TIMESTAMP: timestamp of the signature
+    # - varen-STARKNET-SIGNATURE-VERSION: version of the signature
     def _apply_fullnode_headers_patch(self, client):
-        """Apply the fullnode headers patch for Paradex-specific headers."""
+        """Apply the fullnode headers patch for varen-specific headers."""
         current_self = self
 
         async def monkey_patched_make_request(
@@ -148,16 +148,16 @@ class ParadexAccount:
 
     def onboarding_signature(self) -> str:
         if self.config is None:
-            return raise_value_error("Paradex: System config not loaded")
+            return raise_value_error("varen: System config not loaded")
         message = build_onboarding_message(self.l2_chain_id)
         sig = self.starknet.sign_message(message)
         return flatten_signature(sig)
 
     def onboarding_headers(self) -> dict:
         return {
-            "PARADEX-ETHEREUM-ACCOUNT": self.l1_address,
-            "PARADEX-STARKNET-ACCOUNT": hex(self.l2_address),
-            "PARADEX-STARKNET-SIGNATURE": self.onboarding_signature(),
+            "varen-ETHEREUM-ACCOUNT": self.l1_address,
+            "varen-STARKNET-ACCOUNT": hex(self.l2_address),
+            "varen-STARKNET-SIGNATURE": self.onboarding_signature(),
         }
 
     def auth_signature(self, timestamp: int, expiry: int) -> str:
@@ -169,10 +169,10 @@ class ParadexAccount:
         timestamp = int(time.time())
         expiry = timestamp + 24 * 60 * 60
         return {
-            "PARADEX-STARKNET-ACCOUNT": hex(self.l2_address),
-            "PARADEX-STARKNET-SIGNATURE": self.auth_signature(timestamp, expiry),
-            "PARADEX-TIMESTAMP": str(timestamp),
-            "PARADEX-SIGNATURE-EXPIRATION": str(expiry),
+            "varen-STARKNET-ACCOUNT": hex(self.l2_address),
+            "varen-STARKNET-SIGNATURE": self.auth_signature(timestamp, expiry),
+            "varen-TIMESTAMP": str(timestamp),
+            "varen-SIGNATURE-EXPIRATION": str(expiry),
         }
 
     def fullnode_request_headers(self, account: StarknetAccount, chain_id: int, json_payload: str):
@@ -188,10 +188,10 @@ class ParadexAccount:
         sig = account.sign_message(message)
         return {
             "Content-Type": "application/json",
-            "PARADEX-STARKNET-ACCOUNT": account_address,
-            "PARADEX-STARKNET-SIGNATURE": f'["{sig[0]}","{sig[1]}"]',
-            "PARADEX-STARKNET-SIGNATURE-TIMESTAMP": str(signature_timestamp),
-            "PARADEX-STARKNET-SIGNATURE-VERSION": FULLNODE_SIGNATURE_VERSION,
+            "varen-STARKNET-ACCOUNT": account_address,
+            "varen-STARKNET-SIGNATURE": f'["{sig[0]}","{sig[1]}"]',
+            "varen-STARKNET-SIGNATURE-TIMESTAMP": str(signature_timestamp),
+            "varen-STARKNET-SIGNATURE-VERSION": FULLNODE_SIGNATURE_VERSION,
         }
 
     def sign_order(self, order: Order) -> str:
