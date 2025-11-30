@@ -18,7 +18,7 @@ from starknet_py.proxy.contract_abi_resolver import ProxyConfig
 from starknet_py.proxy.proxy_check import ArgentProxyCheck, OpenZeppelinProxyCheck, ProxyCheck
 from starknet_py.utils.typed_data import TypedData, TypedDataDict
 
-from paradex_py.utils import random_resource_bounds
+from raven_py.utils import random_resource_bounds
 
 from .utils import message_signature, typed_data_to_message_hash
 
