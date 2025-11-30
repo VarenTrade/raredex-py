@@ -3,9 +3,9 @@ from typing import cast
 
 from starknet_py.utils.typed_data import TypedDataDict
 
-from paradex_py.common.order import Order
+from varen_py.common.order import Order
 
-
+ 
 class Trade:
     def __init__(
         self,
