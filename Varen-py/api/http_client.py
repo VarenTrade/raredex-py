@@ -4,9 +4,9 @@ from typing import Any
 
 import httpx
 
-from paradex_py.api.models import ApiErrorSchema
-from paradex_py.api.protocols import RequestHook, RetryStrategy
-from paradex_py.utils import raise_value_error
+from varen_py.api.models import ApiErrorSchema
+from varen_py.api.protocols import RequestHook, RetryStrategy
+from varen_py.utils import raise_value_error
 
 
 class HttpMethod(Enum):
