@@ -10,7 +10,7 @@ from starknet_py.utils.typed_data import (
 from starknet_py.utils.typed_data import TypedData as StarknetTypedDataDataclass
 
 from .utils import compute_hash_on_elements
-
+ 
 
 class TypedData(StarknetTypedDataDataclass):
     def _encode_data(self, type_name: str, data: dict) -> list[int]:
