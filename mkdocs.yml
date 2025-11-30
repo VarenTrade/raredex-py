@@ -1,10 +1,10 @@
-site_name: "Raredex Python SDK" # via logo
-repo_url: https://github.com/traderaredex/paradex-py
-site_url: https://traderaredex.github.io/paradex-py
-site_description: Raredex Python SDK
-site_author: Raredex
+site_name: "Varen Python SDK" # via logo
+repo_url: https://github.com/VarenTrade/paradex-py
+site_url: https://varentrade.github.io/varen-py
+site_description: Varen Python SDK
+site_author: Varen
 edit_uri: edit/main/docs/
-repo_name: traderaredex/paradex-py
+repo_name: varentrade/varen-py
 
 plugins:
   - search
@@ -37,9 +37,9 @@ theme:
 extra:
   social:
     - icon: fontawesome/brands/github
-      link: https://github.com/tradeparadex/paradex-py
+      link: https://github.com/varentrade/varen-py
     - icon: fontawesome/brands/python
-      link: https://pypi.org/project/paradex-py
+      link: https://pypi.org/project/varen-py
   generator: false
 
 markdown_extensions:
