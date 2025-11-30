@@ -4,7 +4,7 @@ import marshmallow_dataclass
 
 
 @dataclass
-class ApiError:
+class ApiError: 
     error: str
     message: str
     data: dict | None
