@@ -2,12 +2,12 @@ from typing import cast
 
 from starknet_py.utils.typed_data import TypedDataDict
 
-from paradex_py.common.order import Order
+from varen_py.common.order import Order
 
 
 def build_order_message(chain_id: int, o: Order) -> TypedDataDict:
     message = {
-        "domain": {"name": "Paradex", "chainId": hex(chain_id), "version": "1"},
+        "domain": {"name": "Varen", "chainId": hex(chain_id), "version": "1"},
         "primaryType": "Order",
         "types": {
             "StarkNetDomain": [
