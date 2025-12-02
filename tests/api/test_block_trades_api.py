@@ -3,7 +3,7 @@ from unittest.mock import Mock, patch
 
 import pytest
 
-from paradex_py.api.api_client import ParadexApiClient
+from paradex_py.api.api_client import ParadexApiClient 
 from paradex_py.api.generated.requests import (
     BlockExecuteRequest,
     BlockOfferRequest,
