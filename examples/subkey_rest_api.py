@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Example script demonstrating L2-only REST API usage with RaredexSubkey.
+Example script demonstrating L2-only REST API usage with VarenSubkey.
 
 This example shows how to use REST API functionality with only L2 credentials (subkey mode),
 without requiring L1 Ethereum address or private key.
@@ -20,9 +20,9 @@ import time
 from datetime import datetime
 from decimal import Decimal
 
-from raredex_py import Raredex, RaredexSubkey
-from raredex_py.common.order import Order, OrderSide, OrderType
-from raredex_py.environment import TESTNET
+from varen_py import Varen, VarenSubkey
+from varen_py.common.order import Order, OrderSide, OrderType
+from varen_py.environment import TESTNET
 
 # Environment variables
 TEST_L2_ADDRESS = os.getenv("L2_ADDRESS", "")
