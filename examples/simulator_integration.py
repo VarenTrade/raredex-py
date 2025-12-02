@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Raredex Simulator Integration Example
+Varen Simulator Integration Example
 
 Comprehensive example demonstrating all simulator-friendly features:
 1. REST API injection with httpx MockTransport
@@ -19,15 +19,15 @@ from types import SimpleNamespace
 
 import httpx
 
-from raredex_py import Raredex
-from raredex_py.api.api_client import RaredexApiClient
-from raredex_py.api.http_client import HttpClient
-from raredex_py.api.ws_client import ParadexWebsocketClient
-from raredex_py.environment import Environment
+from varen_py import Varen
+from varen_py.api.api_client import VarenApiClient
+from varen_py.api.http_client import HttpClient
+from varen_py.api.ws_client import VarenWebsocketClient
+from rvaren_py.environment import Environment
 
 # Optional: WebSocket RPC models for typed message creation
 try:
-    from raredex_py.api.ws_models import (
+    from varen_py.api.ws_models import (
         JSONRPCRequest,
         create_data_message,
         create_subscription_request,
