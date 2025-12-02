@@ -4,7 +4,7 @@ import os
 from starknet_py.common import int_from_hex
 
 from raredex_py import Raredex
-from raredex_py.api.ws_client import ParadexWebsocketChannel
+from raredex_py.api.ws_client import VarenWebsocketChannel
 from raredex_py.environment import TESTNET
 
 # Environment variables
@@ -31,17 +31,17 @@ async def callback_general(ws_channel: RaredexWebsocketChannel, message: dict) -
     logger.info(f"callback_general(): Channel:{ws_channel} market:{market} message:{message}")
 
 
-async def paradex_ws_subscribe(paradex: Paradex) -> None:
+async def varen_ws_subscribe(varen: Varen) -> None:
     """This function subscribes to all Websocket channels
     For market specific channels subscribe to ETH-USD-PERP market"""
     is_connected = False
     while not is_connected:
-        is_connected = await paradex.ws_client.connect()
+        is_connected = await varen.ws_client.connect()
         if not is_connected:
             logger.info("connection failed, retrying in 1 second")
             await asyncio.sleep(1)
-    await paradex.ws_client.subscribe(
-        ParadexWebsocketChannel.ACCOUNT,
+    await varen.ws_client.subscribe(
+        VarenWebsocketChannel.ACCOUNT,
         callback_general,
     )
     await paradex.ws_client.subscribe(
