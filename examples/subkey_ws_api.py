@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Example script demonstrating L2-only WebSocket usage with RaredexSubkey.
+Example script demonstrating L2-only WebSocket usage with VarenSubkey.
 
 This example shows how to use WebSocket functionality with only L2 credentials (subkey mode),
 without requiring L1 Ethereum address or private key.
@@ -19,9 +19,9 @@ import asyncio
 import os
 import sys
 
-from raredex_py import RaredexSubkey
-from raredex_py.api.ws_client import RaredexWebsocketChannel
-from raredex_py.environment import TESTNET
+from varen_py import VarenSubkey
+from varen_py.api.ws_client import VarenWebsocketChannel
+from varen_py.environment import TESTNET
 
 # Add the parent directory to the path so we can import raredex_py
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
