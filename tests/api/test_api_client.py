@@ -2,14 +2,14 @@ from unittest.mock import Mock, patch
 
 import pytest
 
-from paradex_py.api.api_client import ParadexApiClient
-from paradex_py.environment import TESTNET
+from varen_py.api.api_client import VarenApiClient
+from varen_py.environment import TESTNET
 
 
-class TestParadexApiClient:
+class TestVarenApiClient:
     def setup_method(self):
         """Setup method to create an API client instance for each test."""
-        self.api_client = ParadexApiClient(env=TESTNET)
+        self.api_client = VarenApiClient(env=TESTNET)
         # Mock the account and auth methods
         self.api_client.account = Mock()
         self.api_client._validate_auth = Mock()
