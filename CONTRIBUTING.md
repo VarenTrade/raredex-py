@@ -7,7 +7,7 @@ You can contribute in many ways:
 
 # Types of Contributions
 
-## Report Bugs
+## Report Bugs 
 
 Report bugs at https://github.com/VarenTrade/varen-py/issues
 
